@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="IDAdmin" />
+          </Key>
+          <Property Name="IDAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="permission" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryMotel">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateHide" Type="datetime" />
+          <Property Name="Expirationdate" Type="datetime" />
+          <Property Name="HostID" Type="int" />
+          <Property Name="MotelID" Type="int" />
+          <Property Name="CustomID" Type="int" />
+          <Property Name="Electric" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Water" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Priece" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Wifi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="custom">
+          <Key>
+            <PropertyRef Name="CustomID" />
+          </Key>
+          <Property Name="CustomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Host">
+          <Key>
+            <PropertyRef Name="HostID" />
+          </Key>
+          <Property Name="HostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IDADmin" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageMotel">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="MotelID" Type="int" />
+        </EntityType>
+        <EntityType Name="motel">
+          <Key>
+            <PropertyRef Name="MotelID" />
+          </Key>
+          <Property Name="MotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Acreage" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiledDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HostID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewID" />
+          </Key>
+          <Property Name="NewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="avatar" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MotelID" Type="int" />
+          <Property Name="CustomID" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="searchprice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceFrom" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Contract_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Host_FKHOST">
+          <End Role="Host" Type="Self.Host" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Host_ADMIN_KHOS">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="Host" Type="Self.Host" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="IDAdmin" />
+            </Principal>
+            <Dependent Role="Host">
+              <PropertyRef Name="IDADmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageMotel_motel_NoiKhoa">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="ImageMotel">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_motel_Host_KhoaChinh">
+          <End Role="Host" Type="Self.Host" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_DanhMucTro_FKMADM">
+          <End Role="CategoryMotel" Type="Self.CategoryMotel" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryMotel">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_TimTheoGia_FKTimGia">
+          <End Role="searchprice" Type="Self.searchprice" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="searchprice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NhaTroModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryMotel" EntityType="Self.CategoryMotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="custom" EntityType="Self.custom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Host" EntityType="Self.Host" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageMotel" EntityType="Self.ImageMotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="motel" EntityType="Self.motel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="searchprice" EntityType="Self.searchprice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contract_custom_FKK" Association="Self.FK_Contract_custom_FKK">
+            <End Role="custom" EntitySet="custom" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Host_FKHOST" Association="Self.FK_Contract_Host_FKHOST">
+            <End Role="Host" EntitySet="Host" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_motel_FKMT" Association="Self.FK_Contract_motel_FKMT">
+            <End Role="motel" EntitySet="motel" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Host_ADMIN_KHOS" Association="Self.FK_Host_ADMIN_KHOS">
+            <End Role="ADMIN" EntitySet="ADMIN" />
+            <End Role="Host" EntitySet="Host" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageMotel_motel_NoiKhoa" Association="Self.FK_ImageMotel_motel_NoiKhoa">
+            <End Role="motel" EntitySet="motel" />
+            <End Role="ImageMotel" EntitySet="ImageMotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_motel_Host_KhoaChinh" Association="Self.FK_motel_Host_KhoaChinh">
+            <End Role="Host" EntitySet="Host" />
+            <End Role="motel" EntitySet="motel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_DanhMucTro_FKMADM" Association="Self.FK_NhaTro_DanhMucTro_FKMADM">
+            <End Role="CategoryMotel" EntitySet="CategoryMotel" />
+            <End Role="motel" EntitySet="motel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
+            <End Role="area" EntitySet="area" />
+            <End Role="motel" EntitySet="motel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_TimTheoGia_FKTimGia" Association="Self.FK_NhaTro_TimTheoGia_FKTimGia">
+            <End Role="searchprice" EntitySet="searchprice" />
+            <End Role="motel" EntitySet="motel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_custom_FKK" Association="Self.FK_Order_custom_FKK">
+            <End Role="custom" EntitySet="custom" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_motel_FKMT" Association="Self.FK_Order_motel_FKMT">
+            <End Role="motel" EntitySet="motel" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="IDAdmin" />
+          </Key>
+          <Property Name="IDAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Hosts" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="ADMIN" ToRole="Host" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="area" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="CategoryMotel">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="CategoryMotel" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateHide" Type="DateTime" Precision="3" />
+          <Property Name="Expirationdate" Type="DateTime" Precision="3" />
+          <Property Name="HostID" Type="Int32" />
+          <Property Name="MotelID" Type="Int32" />
+          <Property Name="CustomID" Type="Int32" />
+          <Property Name="Electric" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Water" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Priece" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Wifi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="custom" Relationship="Self.FK_Contract_custom_FKK" FromRole="Contract" ToRole="custom" />
+          <NavigationProperty Name="Host" Relationship="Self.FK_Contract_Host_FKHOST" FromRole="Contract" ToRole="Host" />
+          <NavigationProperty Name="motel" Relationship="Self.FK_Contract_motel_FKMT" FromRole="Contract" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="custom">
+          <Key>
+            <PropertyRef Name="CustomID" />
+          </Key>
+          <Property Name="CustomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_custom_FKK" FromRole="custom" ToRole="Contract" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_custom_FKK" FromRole="custom" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Host">
+          <Key>
+            <PropertyRef Name="HostID" />
+          </Key>
+          <Property Name="HostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDADmin" Type="Int32" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="Host" ToRole="ADMIN" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_Host_FKHOST" FromRole="Host" ToRole="Contract" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="Host" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="ImageMotel">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotelID" Type="Int32" />
+          <NavigationProperty Name="motel" Relationship="Self.FK_ImageMotel_motel_NoiKhoa" FromRole="ImageMotel" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="motel">
+          <Key>
+            <PropertyRef Name="MotelID" />
+          </Key>
+          <Property Name="MotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Acreage" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiledDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HostID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="motel" ToRole="area" />
+          <NavigationProperty Name="CategoryMotel" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="motel" ToRole="CategoryMotel" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_motel_FKMT" FromRole="motel" ToRole="Contract" />
+          <NavigationProperty Name="Host" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="motel" ToRole="Host" />
+          <NavigationProperty Name="ImageMotels" Relationship="Self.FK_ImageMotel_motel_NoiKhoa" FromRole="motel" ToRole="ImageMotel" />
+          <NavigationProperty Name="searchprice" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="motel" ToRole="searchprice" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_motel_FKMT" FromRole="motel" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewID" />
+          </Key>
+          <Property Name="NewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MotelID" Type="Int32" />
+          <Property Name="CustomID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="custom" Relationship="Self.FK_Order_custom_FKK" FromRole="Order" ToRole="custom" />
+          <NavigationProperty Name="motel" Relationship="Self.FK_Order_motel_FKMT" FromRole="Order" ToRole="motel" />
+        </EntityType>
+        <EntityType Name="searchprice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="searchprice" ToRole="motel" />
+        </EntityType>
+        <Association Name="FK_Host_ADMIN_KHOS">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="Host" Type="Self.Host" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="IDAdmin" />
+            </Principal>
+            <Dependent Role="Host">
+              <PropertyRef Name="IDADmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_DanhMucTro_FKMADM">
+          <End Role="CategoryMotel" Type="Self.CategoryMotel" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryMotel">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Host_FKHOST">
+          <End Role="Host" Type="Self.Host" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_motel_Host_KhoaChinh">
+          <End Role="Host" Type="Self.Host" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageMotel_motel_NoiKhoa">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="ImageMotel">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhaTro_TimTheoGia_FKTimGia">
+          <End Role="searchprice" Type="Self.searchprice" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="searchprice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="motel">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NhaTroEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="customs" EntityType="Self.custom" />
+          <EntitySet Name="Hosts" EntityType="Self.Host" />
+          <EntitySet Name="ImageMotels" EntityType="Self.ImageMotel" />
+          <EntitySet Name="motels" EntityType="Self.motel" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="searchprices" EntityType="Self.searchprice" />
+          <AssociationSet Name="FK_Host_ADMIN_KHOS" Association="Self.FK_Host_ADMIN_KHOS">
+            <End Role="ADMIN" EntitySet="ADMINs" />
+            <End Role="Host" EntitySet="Hosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
+            <End Role="area" EntitySet="areas" />
+            <End Role="motel" EntitySet="motels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_DanhMucTro_FKMADM" Association="Self.FK_NhaTro_DanhMucTro_FKMADM">
+            <End Role="CategoryMotel" EntitySet="CategoryMotels" />
+            <End Role="motel" EntitySet="motels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_custom_FKK" Association="Self.FK_Contract_custom_FKK">
+            <End Role="custom" EntitySet="customs" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Host_FKHOST" Association="Self.FK_Contract_Host_FKHOST">
+            <End Role="Host" EntitySet="Hosts" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_motel_FKMT" Association="Self.FK_Contract_motel_FKMT">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_custom_FKK" Association="Self.FK_Order_custom_FKK">
+            <End Role="custom" EntitySet="customs" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_motel_Host_KhoaChinh" Association="Self.FK_motel_Host_KhoaChinh">
+            <End Role="Host" EntitySet="Hosts" />
+            <End Role="motel" EntitySet="motels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageMotel_motel_NoiKhoa" Association="Self.FK_ImageMotel_motel_NoiKhoa">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="ImageMotel" EntitySet="ImageMotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhaTro_TimTheoGia_FKTimGia" Association="Self.FK_NhaTro_TimTheoGia_FKTimGia">
+            <End Role="searchprice" EntitySet="searchprices" />
+            <End Role="motel" EntitySet="motels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_motel_FKMT" Association="Self.FK_Order_motel_FKMT">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities5">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="IDAdmin" ColumnName="IDAdmin" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="permission" ColumnName="permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="NhaTroModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryMotels">
+            <EntityTypeMapping TypeName="NhaTroModel.CategoryMotel">
+              <MappingFragment StoreEntitySet="CategoryMotel">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="NhaTroModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="DateHide" ColumnName="DateHide" />
+                <ScalarProperty Name="Expirationdate" ColumnName="Expirationdate" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="Electric" ColumnName="Electric" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Priece" ColumnName="Priece" />
+                <ScalarProperty Name="Wifi" ColumnName="Wifi" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customs">
+            <EntityTypeMapping TypeName="NhaTroModel.custom">
+              <MappingFragment StoreEntitySet="custom">
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hosts">
+            <EntityTypeMapping TypeName="NhaTroModel.Host">
+              <MappingFragment StoreEntitySet="Host">
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IDADmin" ColumnName="IDADmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageMotels">
+            <EntityTypeMapping TypeName="NhaTroModel.ImageMotel">
+              <MappingFragment StoreEntitySet="ImageMotel">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="motels">
+            <EntityTypeMapping TypeName="NhaTroModel.motel">
+              <MappingFragment StoreEntitySet="motel">
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Acreage" ColumnName="Acreage" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiledDate" ColumnName="ModifiledDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="NhaTroModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewID" ColumnName="NewID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="NhaTroModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="searchprices">
+            <EntityTypeMapping TypeName="NhaTroModel.searchprice">
+              <MappingFragment StoreEntitySet="searchprice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PriceFrom" ColumnName="PriceFrom" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

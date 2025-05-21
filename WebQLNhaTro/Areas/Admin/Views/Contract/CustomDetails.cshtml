@@ -1,0 +1,83 @@
+﻿@model WebQLNhaTro.Models.custom
+
+@{
+    ViewBag.Title = "Chi Tiết Người Thuê Nhà";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        color: #333;
+
+    }
+
+    h4 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: 1px solid #ddd;
+        margin-top: 10px;
+    }
+
+    .dl-horizontal dt {
+        width: 160px;
+        font-weight: bold;
+        color: #4caf50;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .back-link {
+        margin-top: 20px;
+        display: inline-block;
+        text-decoration: none;
+        color: #2196F3;
+        font-weight: bold;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+
+</style>
+
+<h2 >Chi Tiết Người Thuê Nhà</h2>
+
+<div>
+    <h4>Thông Tin Người Thuê Nhà</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ Tên
+        </dt>
+
+        <dd>
+            @Model.fullName
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Model.Email
+        </dd>
+
+    </dl>
+
+
+</div>
+<p>
+    @Html.ActionLink("Quay Lại", "Index")
+</p>
